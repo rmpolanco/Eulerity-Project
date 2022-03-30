@@ -26,6 +26,8 @@ body{
   max-width: 95%;
   border-radius: 1em;
   transition-duration: .1s;
+  border: 1px solid black;
+  padding:2px;
 }
 .pet>img:hover{
   transform: scale(1.05);
