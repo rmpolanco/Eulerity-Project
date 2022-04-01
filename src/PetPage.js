@@ -13,7 +13,7 @@ function PetPage() {
   const [search,setSearch] = useState('')
   const [displayedPets,setDisplay] = useState([])
   const fetchPets = () => {
-    fetch('http://eulerity-hackathon.appspot.com/pets').then(
+    fetch('https://eulerity-hackathon.appspot.com/pets').then(
       result=>result.json()).then(data=>
       {
       let temp = []
@@ -142,7 +142,7 @@ var display = displayedPets.map(element => <PetContainer data={element}/>)
     <form onSubmit={event=>{event.preventDefault();searchPets()}}>
           <Label>Search for pets: </Label>
           <input onChange={(event)=>setSearch(event.target.value)} name="petInput" class="textinput" value={search}></input>
-          <Button as="input" type="submit" value="SUBMIT"></Button>
+          <Button as="input" type="submit" value="SEARCH"></Button>
     </form>
     <br></br>
     <SButton onClick={selectAll}>SELECT ALL</SButton>
