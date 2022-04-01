@@ -4,6 +4,7 @@ import './App.css';
 import PetContainer from './Components/PetContainer'
 import { useSelector,useDispatch } from 'react-redux';
 import {selectUrls,removeAll} from './Components/urlSlice'
+import styled from 'styled-components';
 
 function App() {
   const [pets,setPets] = useState([])
@@ -73,24 +74,57 @@ function App() {
   }
   useEffect(()=>fetchPets(),[])
 
+const Button = styled.button`
+color: black;
+font-weight: bold;
+font-size: 1em;
+margin: .2em;
+padding: 0.25em .25em;
+border: 2px solid black;
+border-radius: .3em;
+background-color:white;
+:hover{transition-duration: .2s;
+  transform: scale(1.05);}
+`
+const SButton = styled(Button)`
+  font-size: 1.2em;
+  padding: 0.25em 1em;
+  border: 3px solid black;
+`
+const DButton = styled(SButton)`
+  font-size: 1.5em;
+  margin-top: 1.25em;
+  margin-bottom: 2em;
+`
+const Label = styled.label`
+  font-size: 1.25em;
+`
+const Title = styled.h1`
+  font-size: 3.5em;
+  text-decoration: underline;
+`
 var display = displayedPets.map(element => <PetContainer data={element}/>)
-var displayUrls = ''
-for(let url in selectedurls)
-{
-  displayUrls += selectedurls[url];
-}
+// var displayUrls = ''
+// for(let url in selectedurls)
+// {
+//   displayUrls += selectedurls[url];
+// }
   return (
     <>
-    <h1>Eulerity Pets</h1>
-    <p>{displayUrls}</p>
+    <Title>Eulerity Pets</Title>
+    <h3>Welcome to Eulerity Pets!</h3>
+    <h4>Click on a pet's image to zoom in, and select pets to download their photos:</h4>
+    <br></br>
+    {/* <p>{displayUrls}</p> */}
     <form onSubmit={event=>{event.preventDefault();searchPets()}}>
-          <label>Search for pets: </label>
-          <input onChange={(event)=>setSearch(event.target.value)} name="petInput" value={search}></input>
-          <input type="submit" value="SUBMIT"></input>
+          <Label>Search for pets: </Label>
+          <input onChange={(event)=>setSearch(event.target.value)} name="petInput" class="textinput" value={search}></input>
+          <Button as="input" type="submit" value="SUBMIT"></Button>
     </form>
-    <button onClick={selectAll}>SELECT ALL</button>
-    <button onClick={clearSelection}>CLEAR SELECTION</button>
-    <button onClick={downloadSelected}>DOWNLOAD SELECTION</button>
+    <br></br>
+    <SButton onClick={selectAll}>SELECT ALL</SButton>
+    <SButton onClick={clearSelection}>CLEAR SELECTION</SButton><br></br>
+    <DButton onClick={downloadSelected}>DOWNLOAD</DButton>
     <div className="pets">
     {display}
     </div>
